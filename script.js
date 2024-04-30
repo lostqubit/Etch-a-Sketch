@@ -1,4 +1,5 @@
 const createGrid = (dimension) => {
+    gridSize = dimension;
     let counter = 1;
     for(let row=0;row<dimension;row++){
         const rowDiv = document.createElement("div");
@@ -16,12 +17,14 @@ const createGrid = (dimension) => {
     }
 }
 
-const resetGrid = () => {
+const resetVariables = () => {
     container = document.querySelector(".container");
     grid = document.querySelector(".grid");
     sizeBtn = document.querySelector("#size-btn");
+    resetBtn = document.querySelector("#reset-btn");
 
     sizeBtn.addEventListener("click", changeGridSize);
+    resetBtn.addEventListener("click",resetGrid);
 }
 
 const changeGridSize = () => {
@@ -63,9 +66,19 @@ const changeGridSize = () => {
         grid.setAttribute("class","grid");
         container.append(grid);
     
-        resetGrid();
+        resetVariables();
         createGrid(size);
     }
+}
+
+const resetGrid = () => {
+    grid.remove();
+    grid = document.createElement("div");
+    grid.setAttribute("class","grid");
+    container.append(grid);
+
+    resetVariables();
+    createGrid(gridSize);
 }
 
 const generateRandomColor = () => {
@@ -82,7 +95,7 @@ const colorCell = (event) => {
 }
 
 
-let container,grid,sizeBtn;
+let container,grid,gridSize,sizeBtn,resetBtn;
 
-resetGrid();
+resetVariables();
 createGrid(16); 
