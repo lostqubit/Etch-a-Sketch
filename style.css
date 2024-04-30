@@ -32,7 +32,7 @@ h1{
     aspect-ratio: 1;
     display: flex;
     flex-direction: column;
-    border: 1px solid #B6EADA;
+    border: 1px solid rgba(182, 234, 218, 0.25);
 }
 
 .row{
@@ -44,7 +44,7 @@ h1{
 
 .cell{
     flex-grow: 1;
-    border: 1px solid #B6EADA;
+    border: 1px solid rgba(182, 234, 218, 0.25);
     aspect-ratio: 1;
 }
 
