@@ -1,4 +1,5 @@
 const createGrid = (dimension) => {
+    let counter = 1;
     for(let row=0;row<dimension;row++){
         const rowDiv = document.createElement("div");
         rowDiv.setAttribute("class","row");
@@ -6,7 +7,11 @@ const createGrid = (dimension) => {
         for(let col=0;col<dimension;col++){
             const cell = document.createElement("div");
             cell.setAttribute("class","cell");
+            cell.setAttribute("id",`cell-${counter}`);
             rowDiv.append(cell);
+
+            cell.addEventListener("mouseover",colorCell);
+            counter++;
         }    
     }
 }
@@ -18,7 +23,6 @@ const resetGrid = () => {
 
     sizeBtn.addEventListener("click", changeGridSize);
 }
-
 
 const changeGridSize = () => {
     let size = prompt('Enter grid size:\n(Max value:100)');
@@ -62,6 +66,19 @@ const changeGridSize = () => {
         resetGrid();
         createGrid(size);
     }
+}
+
+const generateRandomColor = () => {
+    const r = Math.floor(Math.random()*256);
+    const g = Math.floor(Math.random()*256);
+    const b = Math.floor(Math.random()*256);
+
+    return `rgb(${r},${g},${b})`;
+}
+
+const colorCell = (event) => {
+    const color = generateRandomColor();
+    document.querySelector(`#${event.target.id}`).style.backgroundColor = color;
 }
 
 
