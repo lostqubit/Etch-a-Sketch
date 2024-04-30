@@ -1,3 +1,16 @@
+const resetVariables = () => {
+    container = document.querySelector(".container");
+    grid = document.querySelector(".grid");
+    sizeBtn = document.querySelector("#size-btn");
+    resetBtn = document.querySelector("#reset-btn");
+    darkeningBtn = document.querySelector("#darken-btn");
+    darkeningBtn.textContent = "Enable Darkening";
+
+    sizeBtn.addEventListener("click", changeGridSize);
+    resetBtn.addEventListener("click",resetGrid);
+    darkeningBtn.addEventListener("click",toggleDarkening);
+}
+
 const createGrid = (dimension) => {
     gridSize = dimension;
     let counter = 1;
@@ -6,25 +19,18 @@ const createGrid = (dimension) => {
         rowDiv.setAttribute("class","row");
         grid.append(rowDiv);
         for(let col=0;col<dimension;col++){
+            const cellContainer = document.createElement("div");
+            cellContainer.setAttribute("class","cell-container");
             const cell = document.createElement("div");
             cell.setAttribute("class","cell");
             cell.setAttribute("id",`cell-${counter}`);
-            rowDiv.append(cell);
+            rowDiv.append(cellContainer);
+            cellContainer.append(cell);
 
             cell.addEventListener("mouseover",colorCell);
             counter++;
         }    
     }
-}
-
-const resetVariables = () => {
-    container = document.querySelector(".container");
-    grid = document.querySelector(".grid");
-    sizeBtn = document.querySelector("#size-btn");
-    resetBtn = document.querySelector("#reset-btn");
-
-    sizeBtn.addEventListener("click", changeGridSize);
-    resetBtn.addEventListener("click",resetGrid);
 }
 
 const changeGridSize = () => {
@@ -91,11 +97,34 @@ const generateRandomColor = () => {
 
 const colorCell = (event) => {
     const color = generateRandomColor();
-    document.querySelector(`#${event.target.id}`).style.backgroundColor = color;
+    const cell = document.querySelector(`#${event.target.id}`);
+    if(cell.style.opacity===""){
+        cell.style.opacity = "1";
+    }
+    else{
+        if(darkeningFlag){
+            const opacity = parseFloat(cell.style.opacity)-0.1;
+            if(parseFloat(cell.style.opacity)>0) cell.style.opacity = opacity.toString();
+            console.log("duh");
+        }
+    }
+    cell.style.backgroundColor = color;
+}
+
+const toggleDarkening = () => {
+    if(darkeningBtn.textContent === "Enable Darkening") {
+        darkeningBtn.textContent="Disable Darkening";
+        darkeningFlag = true;
+    }
+    else {
+        darkeningBtn.textContent = "Enable Darkening";
+        darkeningFlag = false;
+    }
 }
 
 
-let container,grid,gridSize,sizeBtn,resetBtn;
+let container,grid,gridSize,sizeBtn,resetBtn,darkeningBtn;
+let darkeningFlag = false;
 
 resetVariables();
 createGrid(16); 

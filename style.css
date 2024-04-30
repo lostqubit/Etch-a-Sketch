@@ -42,10 +42,15 @@ h1{
     display: flex;
 }
 
-.cell{
+.cell-container{
     flex-grow: 1;
     border: 1px solid rgba(182, 234, 218, 0.25);
     aspect-ratio: 1;
+}
+
+.cell{
+    height:100%;
+    width:100%;
 }
 
 .buttons{
