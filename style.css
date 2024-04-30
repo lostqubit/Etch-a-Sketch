@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10&display=swap');
+
+body{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #03001C;
+}
+
+h1{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 0;
+    color: #5B8FB9;
+    font-family: "Jersey 10", sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+.container{
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid{
+    height: 100%;
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #B6EADA;
+}
+
+.row{
+    margin:0;
+    padding:0;
+    flex-grow: 1;
+    display: flex;
+}
+
+.cell{
+    flex-grow: 1;
+    border: 1px solid #B6EADA;
+    aspect-ratio: 1;
+}
+
+.buttons{
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+button{
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    background-color: #5B8FB9;
+    color: #B6EADA;
+    font-weight: 700;
+}
